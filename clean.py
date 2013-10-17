@@ -103,7 +103,8 @@ def main():
 # ______________________________________________________________________________
 
 def resolve_link(pathname):
-    pathname = os.path._resolve_link(pathname)
+    from os import readlink;
+    pathname = readlink(pathname)
     return "." if pathname is None else pathname
 
 
