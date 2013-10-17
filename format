@@ -1,0 +1,12 @@
+#!/bin/sh
+## format
+## 
+## Made by Jules Baratoux
+## Login   <jules_000@epitech.net>
+## 
+## Started on  Wed Oct 24 03:21:53 2012 Jules Baratoux
+## Last update Wed Oct 24 04:27:56 2012 Jules Baratoux
+##
+
+"$@" | sed -e "s/\/home\/$USER/~/g"	\
+    -e "s/ -> / → /g"

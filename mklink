@@ -1,0 +1,92 @@
+#!/bin/bash
+## mklink for cygwin
+## 
+## Made by Jules Baratoux
+## Login   <jules_000@epitech.net>
+## 
+## Started on  Wed Oct 24 19:45:26 2012 Jules Baratoux
+## Last update Thu Oct 25 09:30:19 2012 Jules Baratoux
+##
+
+Designed_for="Cygwin"
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                                 MKLINK                                    │
+# └───────────────────────────────────────────────────────────────────────────┘
+# Designed for Cygwin
+# man ~/scripts/mklink.1
+# usage: mklink [-s] target [link_name]
+
+Name=`basename $0`
+
+function	error()
+{
+    echo "$Name: $1" >&2
+    exit 1
+}
+
+# BARRIER
+if [ `uname -o` != $Designed_for ]
+then
+    error "Invalid operating system, $Name is disigned for running in a $Designed_for environment"
+fi
+
+symlink=0
+while getopts ":s" opt; do
+    case $opt in
+	s)
+	    symlink=1
+	    ;;
+	\?)
+	    error "Invalid option: -$OPTARG"
+	    ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+
+if [ ! "$1" ]
+then
+    echo mklink: "Invalid argument number" >&2
+    echo usage: "mklink [-s] target [link_name]" >&2
+    exit 1
+fi
+
+if [ "$2" ]
+then
+    link="$(cygpath -w "$2")"
+    target="$(cygpath -w "$1")"
+else
+    link="$(basename "$(cygpath -w "$1")")"
+    target="$(cygpath -w "$1")"
+fi    
+
+param=""
+
+if [ $symlink -eq 1 ]
+then
+    if [ -d "$1" ]
+    then
+	param="/D"
+    fi
+else
+    if [ -d "$1" ]
+    then
+	param="/J"
+    else
+	param="/H"
+    fi
+fi
+
+if [ "$link" == "$target" ] || [ "$(cygpath -w "`pwd`/$link")" == "$target" ]
+then
+    link="$link - link"
+fi
+
+if [ ! $param = "" ]
+then
+    cmd /C MKLINK "$param" "$link" "$target"
+else
+    cmd /C MKLINK "$link" "$target"
+fi

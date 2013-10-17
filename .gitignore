@@ -1,7 +1,17 @@
-*.py[cod]
+#! /bin/sh
 
-# C extensions
-*.so
+# Dirt files
+*~
+.#*
+*.stackdump
+
+# Compiled files
+*.elc
+
+
+# Python
+*.py[cod]
+__cache__
 
 # Packages
 *.egg

@@ -1,0 +1,35 @@
+#!/bin/bash
+## find_up
+## 
+## Made by u-laptop\barato_j
+## Login   <barato_j@epitech.net>
+## 
+## Started on  Fri Feb 22 14:38:35 2013 u-laptop\barato_j
+## Last update Fri Feb 22 23:10:41 2013 u-laptop\barato_j
+##
+
+status=1
+function	find_backward()
+{
+    while [ "$PWD" != "/" ]
+    do
+	if [ "$(dirname $(find . -maxdepth 1 "$@"))"  == "." ]
+	then
+	    echo $PWD
+	    status=0
+	    break
+	else
+	    cd ..
+	fi
+    done
+}
+
+if [ $1 == "-b" ]
+then
+    shift
+    find_backward "$@" 2> /dev/null
+    exit $status
+else
+    find "$@"
+    exit 0
+fi

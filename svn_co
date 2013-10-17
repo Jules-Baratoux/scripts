@@ -1,0 +1,39 @@
+#!/bin/bash
+## svn_co for svn
+## 
+## Made by jules baratoux
+## Login   <barato_j@epitech.net>
+## 
+## Started on  Wed Jun  6 19:52:15 2012 jules baratoux
+## Last update Tue Feb 19 21:54:27 2013 u-laptop\barato_j
+##
+
+## Download an svn repository from a KSCM adress
+## with  the  ability  to  rename  it  localy
+## Usage:  svn_co  [repository]  [local_name]
+
+if [ ${1} ]
+then
+    DIR=${1}
+else
+    echo "Enter a kscm repository..."
+    read -e DIR
+fi
+
+if [ ${2} ]
+then
+    NAME=${2}
+else
+    echo "Enter a local directory name or press 'Enter'"
+    read -e NAME
+fi
+
+if [ "$NAME" != "" ]
+then
+    echo "Downloading '"$DIR"' as '"$NAME"'..."			&&\
+    svn co svn+ssh://kscm@koala-rendus.epitech.net/$DIR		&&\
+    mv $DIR $NAME;
+else
+    echo "Downloading '"$DIR"'..."					&&\
+    svn co svn+ssh://kscm@koala-rendus.epitech.net/$DIR
+fi

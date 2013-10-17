@@ -1,0 +1,4 @@
+#!/bin/bash
+
+printf '\E[30m \E[1m▌▌\E[m\r'
+read

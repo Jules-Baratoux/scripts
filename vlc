@@ -1,0 +1,30 @@
+#!/bin/bash
+## vlc for cygwin
+## 
+## Made by Jules Baratoux
+## Login   <jules_000@epitech.net>
+## 
+## Started on  Wed Oct 24 19:45:26 2012 Jules Baratoux
+## Last update Mon Feb 25 16:20:32 2013 u-laptop\barato_j
+##
+
+Designed_for="Cygwin"
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                                   VLC                                     │
+# └───────────────────────────────────────────────────────────────────────────┘
+# Designed for Cygwin
+# vlc [FILE] [FILE] ...
+
+# LIBRARY
+source `dirname $0`/basics.lib
+
+vlc="/cygdrive/c/Program Files (x86)/VideoLAN/VLC/vlc.exe"
+
+# BARRIER
+if [ `uname -o` != $Designed_for ]
+then
+    error "Invalid operating system, $Name is disigned for running in a $Designed_for environment"
+fi
+
+"$vlc" "$@" &

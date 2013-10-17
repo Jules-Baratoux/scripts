@@ -1,0 +1,11 @@
+#!/bin/sh
+## svn_pospone for svn
+## 
+## Made by jules baratoux
+## Login   <barato_j@epitech.net>
+## 
+## Started on  Wed Jun  6 15:00:03 2012 jules baratoux
+## Last update Wed Jun  6 15:11:17 2012 jules baratoux
+##
+
+emacs -nw `svn st -q | grep C | sed s/"C       "/""/g | xargs | cat`

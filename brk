@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "brk: \`$0\` no longer exists, please use \`pause\` instead"

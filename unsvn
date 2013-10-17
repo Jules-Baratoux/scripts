@@ -1,0 +1,20 @@
+#!/bin/sh
+## unsvn for svn
+## 
+## Made by jules baratoux
+## Login   <barato_j@epitech.net>
+## 
+## Started on  Wed Jun  6 15:06:14 2012 jules baratoux
+## Last update Sun Jun 10 17:33:30 2012 jules baratoux
+##
+
+## Remove all svn atributes from a directory
+
+DIR='.'
+
+if [ ${1} ]
+then
+    DIR=${1}
+fi
+
+find -O3 ${DIR} -name "*svn*" | sed 's/^/"/' | sed 's/$/&"/g' | xargs rm -Rfv ;

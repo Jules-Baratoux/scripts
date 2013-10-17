@@ -1,0 +1,58 @@
+#!/bin/bash
+## basics.lib for scripts
+## 
+## Made by Jules Baratoux
+## Login   <jules_000@epitech.net>
+## 
+## Started on  Tue Oct 30 18:50:19 2012 Jules Baratoux
+## Last update Wed Oct 31 15:12:46 2012 Jules Baratoux
+##
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                               BASICS LIBRARY                              │
+# └───────────────────────────────────────────────────────────────────────────┘
+
+
+Name=`basename $0`
+
+function	error()
+{ # Output an error message on stderr and exit
+  # eg.  name: no such file or directory
+
+    echo "$Name: $@" >&2
+    exit 1
+}
+
+function	print_array()
+{ # Output an arry line by line
+
+    for arg in $@
+    do
+	echo "$arg"
+    done
+}
+
+function	develop_opts()
+{ # Develop condensed options to multiple single options
+  # eg.  -xRv  →   -x -R -v
+
+    while [ "$1" ]
+    do
+	case "$1" in
+	    ( --* )
+		cmd=("${cmd[@]}" "$1") ;;
+
+	    ( -?* )
+		i=0
+		while (( ++i < ${#1} ))
+		do
+		    cmd=("${cmd[@]}" "-${1:$i:1}")
+		done  ;;
+	    
+	    ( * )
+		cmd=("${cmd[@]}" "$1")  ;;
+	esac
+	shift
+    done
+    echo ${cmd[@]}
+}

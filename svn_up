@@ -1,0 +1,3 @@
+#!/bin/sh
+
+svn up "$@" --editor-cmd "emacs -nw -f c-mode"

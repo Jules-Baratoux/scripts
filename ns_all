@@ -1,0 +1,8 @@
+#!/bin/sh
+
+ns_send_msg baheux_f "$@"
+ns_send_msg barato_j "$@"
+ns_send_msg decant_c "$@"
+ns_send_msg delace_e "$@"
+ns_send_msg lamber_k "$@"
+ns_send_msg roynet_s "$@"

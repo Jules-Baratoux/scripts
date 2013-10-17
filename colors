@@ -1,0 +1,23 @@
+#!/bin/bash
+
+function	set_color
+{    
+    echo -ne "\e]4;$1;$2\a"
+}
+
+set_color  0 '#000000'	# black
+set_color  1 '#CD0000'	# red
+set_color  2 '#00CD00'	# green
+set_color  3 '#CECE01'	# yellow
+set_color  4 '#1E90FF'	# blue
+set_color  5 '#CC00CC'	# magenta
+set_color  6 '#01CECE'	# cyan
+set_color  7 '#BFBFBF'	# white	      (light grey really)
+set_color  8 '#4C4C4C'	# bold black  (i.e. dark grey)
+set_color  9 '#FF0000'	# bold red
+set_color 10 '#00FF00'	# bold green
+set_color 11 '#FFFF00'	# bold yellow
+set_color 12 '#4682B4'	# bold blue
+set_color 13 '#FE00FE'	# bold magenta
+set_color 14 '#01FFFF'	# bold cyan
+set_color 15 '#FFFFFF'	# bold white

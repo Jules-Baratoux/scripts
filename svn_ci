@@ -1,0 +1,16 @@
+#!/bin/sh
+## 
+## Made by jules baratoux
+## Login   <barato_j@epitech.net>
+## 
+## Started on  Sat May 12 10:36:13 2012 jules baratoux
+## Last update Sat Jun  2 13:04:37 2012 jules baratoux
+##
+
+svn ci -m "" "$@"				&&\
+echo -e "\nStatus :"				&&\
+svn st | grep -ve ".fast.log"			  \
+	      -ve "linked_list.h"		  \
+	      -ve "macros.h"			  \
+	      -ve "my.h"			  \
+	      -ve "TAGS"

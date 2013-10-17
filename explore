@@ -1,0 +1,63 @@
+#!/bin/bash
+## explore for cygwin
+## 
+## Made by Jules Baratoux
+## Login   <jules_000@epitech.net>
+## 
+## Started on  Wed Oct 24 19:45:26 2012 Jules Baratoux
+## Last update Sun Jan 20 19:06:38 2013 jules baratoux
+##
+
+Designed_for="Cygwin"
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                                 EXPLORE                                   │
+# └───────────────────────────────────────────────────────────────────────────┘
+# Designed for Cygwin
+# man ~/scripts/explore.1
+
+# LIBRARY
+source `dirname $0`/basics.lib
+
+explorer="/cygdrive/c/Windows/explorer.exe"
+
+# BARRIER
+if [ `uname -o` != $Designed_for ]
+then
+    error "Invalid operating system, $Name is disigned for running in a $Designed_for environment"
+fi
+
+
+# FUNCTIONS
+function	explore_path()
+{
+    win_path=$(cygpath -w $1)
+    $explorer "$win_path"
+}
+
+function	explore_file()
+{
+    win_path=$(cygpath -w $1)
+    $explorer "/select,$win_path"
+}
+
+
+# EXECUTION
+if [ "$1" ]
+then
+    if [ -d "$1" ]
+    then
+	explore_path "$1"
+    elif [ -f "$1" ]
+    then
+	explore_file "$1"
+    elif [ -d "$1/.." ]
+    then
+	explore_path "$1/.."
+    else
+	error "can't explore `$1`"
+	$explorer
+    fi
+else
+    explore_path .
+fi

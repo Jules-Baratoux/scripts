@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │                                  CLEAN                                    │
+# └───────────────────────────────────────────────────────────────────────────┘
+# Made by Jules Baratoux
+# man ~/scripts/clean.1
+# usage: clean [-rRiI] [directory]
+
+source `dirname $0`/basics.lib
+
+# FUNCTIONS
+rm_opts="-v"
+maxdepth="-maxdepth 1"
+
+function	clean()
+{
+    find -P -L -O3 "$1" $maxdepth	\
+    \(					\
+	   -type f			\
+	-o -type l			\
+    \)					\
+					\
+    \(					\
+	   -name "*~"			\
+    	-o -name ".*~"			\
+    	-o -name "#*#"			\
+    	-o -name ".#*"			\
+    	-o -name "*.default"		\
+    	-o -name "*.exe.stackdump"	\
+    	-o -name "*.sample"		\
+    \)					\
+	-exec rm "$rm_opts" {} +
+}
+
+function	getopts()
+{
+    while [ "$1" ]
+    do
+	case "$1" in
+	    ( -i | -I)			rm_opts="$rm_opts $1"	   ;;
+	    ( -r | -R | --recursive )	maxdepth=		   ;;
+	    ( -? | --* )		error "Invalid option: $1" ;;
+	    ( * )			argv=("${argv[@]}" "$1")   ;;
+	esac
+	shift
+    done
+
+    if [ "$argv" ]
+    then
+	for arg in "${argv[@]}"
+	do
+	    clean "$arg"
+	done
+    else
+	clean .
+    fi
+}
+
+
+# EXECUTION
+getopts $(develop_opts "$@")

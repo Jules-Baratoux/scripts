@@ -1,0 +1,14 @@
+#!/bin/sh
+## rm with trash
+## 
+## Made by jules baratoux
+## Login   <barato_j@epitech.net>
+## 
+## Started on  Wed Jun  6 13:41:55 2012 jules baratoux
+## Last update Sat Jun  9 19:11:27 2012 jules baratoux
+##
+
+TRASH=/tmp/trash/.
+
+mkdir -p $TRASH			&&\
+mv $1 $TRASH

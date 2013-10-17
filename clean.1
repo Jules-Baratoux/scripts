@@ -1,0 +1,27 @@
+.\" Contact jules@baratoux.fr to correct errors or typos.
+.TH script clean "30 October 2012" "1.0" "clean directories"
+.SH NAME
+clean \- remove dirt from directories
+.SH SYNOPSIS
+.B clean
+[\fIOPTIONS\fR] [\fIDIRECTORIES\fR]
+.SH DESCRIPTION
+Remove dirt files from directories. Multiples directories can be set. By default \fBclean\fR the current directory.
+.SH OPTIONS
+.TP
+\fB\-i\fR
+prompt before every removal
+.TP
+\fB\-I\fR
+prompt once before removing more than three files, or
+when removing recursively.  Less intrusive than \fB\-i\fR,
+while still giving protection against most mistakes
+.TP
+\fB\-r\fR, \fB\-R\fR, \fB\-\-recursive\fR
+clean directories and their subdirectories recursively
+.SH SEE ALSO
+rm(1), find(1)
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Jules Baratoux (jules@baratoux.fr)
